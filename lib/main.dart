@@ -42,10 +42,21 @@ class SplashScreen extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.7,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(40),
-                    bottomRight: Radius.circular(40))),
+              color: Colors.blue,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(40),
+                bottomRight: Radius.circular(40),
+              ),
+            ),
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage('assets/splashImage.png'),
+                ),
+              ),
+            ),
           ),
           Positioned(
             bottom: 40,
@@ -151,14 +162,17 @@ class BottomNav extends StatelessWidget {
             pageProvider.currentIndex = value;
           },
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: ''),
             BottomNavigationBarItem(
-                icon: Icon(Icons.list_alt_outlined), label: ''),
-            BottomNavigationBarItem(icon: Icon(Icons.chat_outlined), label: ''),
+                icon: Icon(Icons.home_outlined), label: 'Home'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_cart_outlined), label: ''),
+                icon: Icon(Icons.list_alt_outlined), label: 'Order List'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.miscellaneous_services_outlined), label: ''),
+                icon: Icon(Icons.chat_outlined), label: 'Message'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_cart_outlined), label: 'Cart'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.miscellaneous_services_outlined),
+                label: 'More'),
           ]),
     );
   }

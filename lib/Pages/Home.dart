@@ -9,6 +9,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        elevation: 0,
         leading: Icon(
           Icons.grid_view,
           color: Colors.black,
@@ -18,88 +19,222 @@ class HomePage extends StatelessWidget {
           children: [
             Text(
               'Your Location',
-              style: GoogleFonts.poppins().copyWith(color: Colors.grey),
+              style: GoogleFonts.poppins()
+                  .copyWith(fontSize: 14, color: Colors.grey),
             ),
             Text(
               'Eren Yager, Indonesia',
-              style: GoogleFonts.poppins().copyWith(color: Colors.black),
+              style: GoogleFonts.poppins().copyWith(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
             )
           ],
         ),
         actions: [
-          Icon(
-            Icons.person_outline,
-            color: Colors.black,
+          IconButton(
+            color: Colors.grey.withOpacity(0.2),
+            icon: ClipOval(child: Image.asset("assets/profile.png")),
+            onPressed: () {},
           )
         ],
       ),
       body: Column(
         children: [
           SizedBox(height: 20),
-          Container(
-            height: 250,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.grey.withOpacity(0.2)),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  'What would you \n like to order ?',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
-                      fontSize: 28,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 20),
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30)),
-                  child: TextFormField(
-                    style: GoogleFonts.poppins()
-                        .copyWith(fontSize: 16, color: Colors.grey),
-                    onChanged: (value) {},
-                    decoration: InputDecoration(
-                        hintText: "Search Grocery",
-                        enabledBorder: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                        hintStyle: GoogleFonts.poppins().copyWith(
-                          fontSize: 16,
-                          color: Colors.grey,
-                        ),
-                        prefixIcon: Icon(Icons.search),
-                        suffixIcon: Container(
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                                color: Colors.lightGreen,
-                                borderRadius: BorderRadius.circular(30)),
-                            child: Icon(Icons.tune_outlined)),
-                        contentPadding: const EdgeInsets.all(16)),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Container(
+              height: 200,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.grey.withOpacity(0.2)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'What would you \n like to order ?',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.poppins(
+                        fontSize: 28,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
                   ),
-                ),
-              ],
+                  SizedBox(height: 20),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(30)),
+                    child: TextFormField(
+                      style: GoogleFonts.poppins()
+                          .copyWith(fontSize: 16, color: Colors.grey),
+                      onChanged: (value) {},
+                      decoration: InputDecoration(
+                          hintText: "Search Grocery",
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          hintStyle: GoogleFonts.poppins().copyWith(
+                            fontSize: 16,
+                            color: Colors.grey,
+                          ),
+                          prefixIcon: Icon(Icons.search),
+                          suffixIcon: Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  color: Colors.lightGreen,
+                                  borderRadius: BorderRadius.circular(30)),
+                              child: Icon(
+                                Icons.tune_outlined,
+                                color: Colors.white,
+                              )),
+                          contentPadding: const EdgeInsets.all(16)),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-          Row(
+          SizedBox(height: 30),
+          SectionTile(title: 'Most Ordered'),
+          MostOrdered(),
+          SizedBox(height: 30),
+          SectionTile(title: 'Exiting Deals'),
+          SizedBox(height: 20),
+          ExitingDeals()
+        ],
+      ),
+    );
+  }
+}
+
+class ExitingDeals extends StatelessWidget {
+  const ExitingDeals({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: <Widget>[
+          ExitingDealCard(
+            text: "40 % Discount On\nFresh Vegetables",
+            image: 'vegetable.png',
+            press: () {},
+          ),
+          ExitingDealCard(
+            text: "32 % Discount On\nFresh Fruits",
+            image: 'fruits.png',
+            press: () {},
+          ),
+          SizedBox(width: 20),
+        ],
+      ),
+    );
+  }
+}
+
+class ExitingDealCard extends StatelessWidget {
+  final String image, text;
+  final Function press;
+  const ExitingDealCard({
+    Key key,
+    @required this.image,
+    @required this.text,
+    @required this.press,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        margin: EdgeInsets.only(
+          left: 20,
+        ),
+        width: MediaQuery.of(context).size.width * 0.8,
+        height: 150,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.grey.withOpacity(0.3)),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Most Ordered',
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.black,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      text,
+                      style: GoogleFonts.poppins().copyWith(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    FlatButton(
+                        onPressed: () {},
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 20),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.lightGreen),
+                          child: Text(
+                            'Get Now',
+                            style: GoogleFonts.poppins()
+                                .copyWith(color: Colors.white),
+                          ),
+                        ))
+                  ],
                 ),
               ),
-              GestureDetector(onTap: () {}, child: Text("Show All"))
+              Expanded(child: Image.asset('assets/' + image)),
             ],
           ),
-          MostOrdered()
+        ),
+      ),
+    );
+  }
+}
+
+class SectionTile extends StatelessWidget {
+  final String title;
+  const SectionTile({
+    Key key,
+    @required this.title,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+          GestureDetector(
+            onTap: () {},
+            child: Text(
+              "Show All",
+              style: GoogleFonts.poppins().copyWith(color: Colors.lightGreen),
+            ),
+          )
         ],
       ),
     );
@@ -118,29 +253,30 @@ class MostOrdered extends StatelessWidget {
       child: Row(
         children: [
           MostOrderedCard(
-              title: 'Onions',
-              shopName: 'shopName',
-              svgPic: 'svgPic',
-              price: 10,
-              press: () {}),
+            title: 'Orange',
+            picture: 'orange.png',
+            price: 10,
+            press: () {},
+          ),
           MostOrderedCard(
-              title: 'Blue Berry',
-              shopName: 'shopName',
-              svgPic: 'svgPic',
-              price: 25,
-              press: () {}),
+            title: 'Grape',
+            picture: 'grape.png',
+            price: 25,
+            press: () {},
+          ),
           MostOrderedCard(
-              title: 'Plum Wine',
-              shopName: 'shopName',
-              svgPic: 'svgPic',
-              price: 35,
-              press: () {}),
+            title: 'Banana',
+            picture: 'banana.png',
+            price: 35,
+            press: () {},
+          ),
           MostOrderedCard(
-              title: 'Orange',
-              shopName: 'shopName',
-              svgPic: 'svgPic',
-              price: 20,
-              press: () {}),
+            title: 'Honeydew',
+            picture: 'honeydew.png',
+            price: 20,
+            press: () {},
+          ),
+          SizedBox(width: 15),
         ],
       ),
     );
@@ -148,14 +284,13 @@ class MostOrdered extends StatelessWidget {
 }
 
 class MostOrderedCard extends StatelessWidget {
-  final String title, shopName, svgPic;
+  final String title, picture;
   final double price;
   final Function press;
   const MostOrderedCard({
     Key key,
     @required this.title,
-    @required this.shopName,
-    @required this.svgPic,
+    @required this.picture,
     @required this.press,
     @required this.price,
   }) : super(key: key);
@@ -163,9 +298,9 @@ class MostOrderedCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(left: 20, right: 15, top: 20, bottom: 20),
+        margin: EdgeInsets.only(left: 20, right: 0, top: 20, bottom: 0),
         decoration: BoxDecoration(
-          color: Colors.red,
+          color: Colors.lightGreen,
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
@@ -177,23 +312,25 @@ class MostOrderedCard extends StatelessWidget {
         child: Material(
           color: Colors.transparent,
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              print(title);
+            },
             child: Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(bottom: 15),
-                    padding: EdgeInsets.all(25),
+                    margin: EdgeInsets.only(bottom: 10),
+                    padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.13),
                       shape: BoxShape.circle,
                     ),
-                    // child: SvgPicture.asset(
-                    //   svgPic,
-                    //   width: size.width * 0.18,
-                    // ),
-                    child: Icon(Icons.ac_unit_outlined),
+                    child: Image.asset(
+                      'assets/' + picture,
+                      width: 80,
+                      height: 80,
+                    ),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -201,23 +338,30 @@ class MostOrderedCard extends StatelessWidget {
                       Text(title,
                           style: GoogleFonts.poppins().copyWith(
                               fontWeight: FontWeight.bold, fontSize: 16)),
-                      SizedBox(height: 10),
+                      // SizedBox(height: 5),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text.rich(TextSpan(children: [
+                          Text.rich(
                             TextSpan(
-                              text: '\$$price ',
-                              style: GoogleFonts.poppins().copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 12),
+                              children: [
+                                TextSpan(
+                                  text: '\$$price ',
+                                  style: GoogleFonts.poppins().copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14),
+                                ),
+                                TextSpan(
+                                  text: 'perKg',
+                                  style: GoogleFonts.poppins().copyWith(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 12),
+                                )
+                              ],
                             ),
-                            TextSpan(
-                              text: 'perKg',
-                              style: GoogleFonts.poppins().copyWith(
-                                  fontWeight: FontWeight.normal, fontSize: 12),
-                            )
-                          ])),
-                          Icon(Icons.add, size: 14)
+                          ),
+                          IconButton(icon: Icon(Icons.add), iconSize: 14)
                         ],
                       )
                     ],
