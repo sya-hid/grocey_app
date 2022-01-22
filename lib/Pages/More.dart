@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:grocery_delivery/Pages/AppBar.dart';
+import 'package:grocery_delivery/Pages/components/AppBar.dart';
 import 'package:grocery_delivery/models/user.dart';
 
 class MorePage extends StatelessWidget {
@@ -19,7 +19,7 @@ class MorePage extends StatelessWidget {
       {'icon': Icons.person_add_alt_1_outlined, 'text': 'Invite Friends'},
     ];
     return Scaffold(
-      appBar: AppBar2(context),
+      appBar: AppBar1(context),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(

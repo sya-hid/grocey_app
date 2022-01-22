@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:grocery_delivery/Pages/AppBar.dart';
-import 'package:grocery_delivery/Pages/cart_item.dart';
 import 'package:grocery_delivery/Pages/cart_provider.dart';
+import 'package:grocery_delivery/Pages/components/AppBar.dart';
+import 'package:grocery_delivery/Pages/components/cart_item.dart';
 import 'package:grocery_delivery/models/cart.dart';
 import 'package:provider/provider.dart';
 
@@ -10,8 +10,7 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
     return Scaffold(
- 
-      appBar: AppBar2(context),
+      appBar: AppBar1(context),
       body: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,10 +36,6 @@ class CartPage extends StatelessWidget {
                       datacarts.length,
                       (index) => CartCard(cart: datacarts[index]),
                     ),
-                    // ...List.generate(
-                    //   datacarts.length,
-                    //   (index) => CartCard(cart: datacarts[index]),
-                    // ),
                   ],
                 ),
               ),

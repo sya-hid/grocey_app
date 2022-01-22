@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:grocery_delivery/Pages/AppBar.dart';
-import 'package:grocery_delivery/Pages/most_ordered_card.dart';
+import 'package:grocery_delivery/Pages/components/AppBar.dart';
+import 'package:grocery_delivery/Pages/components/most_ordered_card.dart';
 import 'package:grocery_delivery/models/product.dart';
-import 'package:grocery_delivery/models/user.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
@@ -83,7 +82,6 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
 
 class ExitingDeals extends StatelessWidget {
   const ExitingDeals({
