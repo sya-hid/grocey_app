@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:grocery_delivery/Pages/most_ordered_card.dart';
+import 'package:grocery_delivery/models/product.dart';
+import 'package:grocery_delivery/models/user.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
@@ -23,7 +26,7 @@ class HomePage extends StatelessWidget {
                   .copyWith(fontSize: 14, color: Colors.grey),
             ),
             Text(
-              'Eren Yager, Indonesia',
+              user.name + ', ' + user.location,
               style: GoogleFonts.poppins().copyWith(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -34,7 +37,7 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             color: Colors.grey.withOpacity(0.2),
-            icon: ClipOval(child: Image.asset("assets/profile.png")),
+            icon: ClipOval(child: Image.asset("assets/" + user.image)),
             onPressed: () {},
           )
         ],
@@ -250,126 +253,15 @@ class MostOrdered extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          MostOrderedCard(
-            title: 'Orange',
-            picture: 'orange.png',
-            price: 10,
-            press: () {},
-          ),
-          MostOrderedCard(
-            title: 'Grape',
-            picture: 'grape.png',
-            price: 25,
-            press: () {},
-          ),
-          MostOrderedCard(
-            title: 'Banana',
-            picture: 'banana.png',
-            price: 35,
-            press: () {},
-          ),
-          MostOrderedCard(
-            title: 'Honeydew',
-            picture: 'honeydew.png',
-            price: 20,
-            press: () {},
-          ),
-          SizedBox(width: 15),
-        ],
-      ),
+      child: Row(children: [
+        ...List.generate(
+            products.length,
+            (index) => MostOrderedCard2(
+                  press: () {},
+                  product: products[index],
+                )),
+        SizedBox(width: 15),
+      ]),
     );
-  }
-}
-
-class MostOrderedCard extends StatelessWidget {
-  final String title, picture;
-  final double price;
-  final Function press;
-  const MostOrderedCard({
-    Key key,
-    @required this.title,
-    @required this.picture,
-    @required this.press,
-    @required this.price,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.only(left: 20, right: 0, top: 20, bottom: 0),
-        decoration: BoxDecoration(
-          color: Colors.lightGreen,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-                offset: Offset(0, 4),
-                blurRadius: 20,
-                color: Color(0xFFB0CCE1).withOpacity(0.32))
-          ],
-        ),
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: () {
-              print(title);
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(bottom: 10),
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.13),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Image.asset(
-                      'assets/' + picture,
-                      width: 80,
-                      height: 80,
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(title,
-                          style: GoogleFonts.poppins().copyWith(
-                              fontWeight: FontWeight.bold, fontSize: 16)),
-                      // SizedBox(height: 5),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text.rich(
-                            TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: '\$$price ',
-                                  style: GoogleFonts.poppins().copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14),
-                                ),
-                                TextSpan(
-                                  text: 'perKg',
-                                  style: GoogleFonts.poppins().copyWith(
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 12),
-                                )
-                              ],
-                            ),
-                          ),
-                          IconButton(icon: Icon(Icons.add), iconSize: 14)
-                        ],
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ),
-        ));
   }
 }
