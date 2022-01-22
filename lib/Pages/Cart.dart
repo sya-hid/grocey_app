@@ -4,17 +4,16 @@ import 'package:grocery_delivery/Pages/cart_provider.dart';
 import 'package:grocery_delivery/Pages/components/AppBar.dart';
 import 'package:grocery_delivery/Pages/components/cart_item.dart';
 import 'package:grocery_delivery/models/cart.dart';
-import 'package:provider/provider.dart';
 
 class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
-    CartProvider cartProvider = Provider.of<CartProvider>(context);
     return Scaffold(
       appBar: AppBar1(context),
       body: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(

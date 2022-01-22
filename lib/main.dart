@@ -4,6 +4,7 @@ import 'package:grocery_delivery/Pages/Home.dart';
 import 'package:grocery_delivery/Pages/More.dart';
 import 'package:grocery_delivery/Pages/OrderList.dart';
 import 'package:grocery_delivery/Pages/cart_provider.dart';
+import 'package:grocery_delivery/Pages/produktest.dart';
 import 'package:grocery_delivery/page_provider.dart';
 import 'package:grocery_delivery/splah_screen.dart';
 import 'package:provider/provider.dart';
@@ -61,6 +62,9 @@ class _MainPageState extends State<MainPage> {
           break;
         case 4:
           return MorePage();
+          break;
+        case 2:
+          return Produk();
           break;
         default:
           return HomePage();

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:grocery_delivery/Pages/cart_provider.dart';
 import 'package:grocery_delivery/models/cart.dart';
-import 'package:provider/provider.dart';
 
 class CartCard extends StatelessWidget {
   final Cart cart;
@@ -11,8 +9,6 @@ class CartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CartProvider cartProvider = Provider.of<CartProvider>(context);
-
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       margin: const EdgeInsets.symmetric(vertical: 10),
@@ -81,9 +77,7 @@ class CartCard extends StatelessWidget {
                   Icons.arrow_back_ios,
                   size: 14,
                 ),
-                onPressed: () {
-                  print(cartProvider.carts);
-                }),
+                onPressed: () {}),
             Text(cart.jumlah.toString(),
                 style: GoogleFonts.poppins()
                     .copyWith(fontSize: 16, fontWeight: FontWeight.bold)),
@@ -92,10 +86,7 @@ class CartCard extends StatelessWidget {
                   Icons.arrow_forward_ios,
                   size: 14,
                 ),
-                onPressed: () {
-                  cartProvider.addjumlah(cart.id);
-                  print(cartProvider.addjumlah(cart.id));
-                })
+                onPressed: () {}),
           ]),
         ],
       ),

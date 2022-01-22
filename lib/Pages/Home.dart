@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery_delivery/Pages/components/AppBar.dart';
 import 'package:grocery_delivery/Pages/components/most_ordered_card.dart';
 import 'package:grocery_delivery/models/product.dart';
+import 'package:grocery_delivery/services/fetchProducts.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
@@ -72,7 +73,19 @@ class HomePage extends StatelessWidget {
           ),
           SizedBox(height: 30),
           SectionTile(title: 'Most Ordered'),
-          MostOrdered(),
+
+          //dummy dari mockupio
+
+          FutureBuilder(
+            future: fetchProducts(),
+            builder: (context, snapshot) => snapshot.hasData
+                ? MostOrdered(
+                    products: snapshot.data,
+                  )
+                : Center(child: Image.asset("assets/ripple.gif")),
+          ),
+          //dummy dari model
+          // MostOrdered2(),
           SizedBox(height: 30),
           SectionTile(title: 'Exiting Deals'),
           SizedBox(height: 20),
@@ -195,7 +208,7 @@ class SectionTile extends StatelessWidget {
           Text(
             title,
             style: TextStyle(
-              fontSize: 18,
+              fontSize: 20,
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
@@ -204,7 +217,10 @@ class SectionTile extends StatelessWidget {
             onTap: () {},
             child: Text(
               "Show All",
-              style: GoogleFonts.poppins().copyWith(color: Colors.lightGreen),
+              style: GoogleFonts.poppins().copyWith(
+                color: Colors.lightGreen,
+                fontSize: 16,
+              ),
             ),
           )
         ],
@@ -214,8 +230,10 @@ class SectionTile extends StatelessWidget {
 }
 
 class MostOrdered extends StatelessWidget {
+  final List<ProductModel> products;
   const MostOrdered({
     Key key,
+    @required this.products,
   }) : super(key: key);
 
   @override
@@ -228,6 +246,52 @@ class MostOrdered extends StatelessWidget {
             (index) => MostOrderedCard2(
                   press: () {},
                   product: products[index],
+                )),
+        SizedBox(width: 15),
+      ]),
+    );
+  }
+}
+
+class TestT extends StatelessWidget {
+  final List<ProductModel> product;
+  const TestT({
+    Key key,
+    @required this.product,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(children: [
+        ...List.generate(
+            product.length,
+            (index) => MostOrderedCard2(
+                  press: () {},
+                  product: product[index],
+                )),
+        SizedBox(width: 15),
+      ]),
+    );
+  }
+}
+
+class MostOrdered2 extends StatelessWidget {
+  const MostOrdered2({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(children: [
+        ...List.generate(
+            dataProducts.length,
+            (index) => MostOrderedCard2(
+                  press: () {},
+                  product: dataProducts[index],
                 )),
         SizedBox(width: 15),
       ]),

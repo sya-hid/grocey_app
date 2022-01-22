@@ -12,7 +12,7 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  productExist(Product product) {
+  productExist(ProductModel product) {
     if (_carts.indexWhere((element) => element.product.id == product.id) ==
         -1) {
       return false;
@@ -21,7 +21,7 @@ class CartProvider with ChangeNotifier {
     }
   }
 
-  addCart(Product product) {
+  addCart(ProductModel product) {
     if (productExist(product)) {
       int index =
           _carts.indexWhere((element) => element.product.id == product.id);

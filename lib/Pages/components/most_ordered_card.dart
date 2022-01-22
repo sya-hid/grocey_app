@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery_delivery/models/product.dart';
 
 class MostOrderedCard2 extends StatelessWidget {
-  final Product product;
+  final ProductModel product;
   final Function press;
   const MostOrderedCard2({
     Key key,
@@ -42,10 +42,13 @@ class MostOrderedCard2 extends StatelessWidget {
                       color: Colors.white.withOpacity(0.13),
                       shape: BoxShape.circle,
                     ),
-                    child: Image.asset(
-                      'assets/' + product.image,
-                      width: 80,
-                      height: 80,
+                    child: Hero(
+                      tag: product.id,
+                      child: FadeInImage.assetNetwork(
+                          width: 90,
+                          height: 90,
+                          placeholder: "assets/spinner.gif",
+                          image: "assets/" + product.image),
                     ),
                   ),
                   Column(
@@ -66,22 +69,32 @@ class MostOrderedCard2 extends StatelessWidget {
                                   text: '\$${product.price} ',
                                   style: GoogleFonts.poppins().copyWith(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 14),
+                                      fontSize: 12),
                                 ),
                                 TextSpan(
                                   text: 'perKg',
                                   style: GoogleFonts.poppins().copyWith(
                                       fontWeight: FontWeight.normal,
-                                      fontSize: 12),
+                                      fontSize: 10),
                                 )
                               ],
                             ),
                           ),
-                          IconButton(
-                            icon: Icon(Icons.add),
-                            iconSize: 14,
-                            onPressed: () {},
-                          )
+                          Container(
+                            padding: const EdgeInsets.all(3),
+                            decoration: BoxDecoration(
+                                color: Colors.white.withOpacity(0.4),
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Icon(
+                              Icons.add,
+                              size: 12,
+                            ),
+                          ),
+                          // IconButton(
+                          //   icon: Icon(Icons.add),
+                          //   iconSize: 14,
+                          //   onPressed: () {},
+                          // )
                         ],
                       )
                     ],

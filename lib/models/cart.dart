@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class Cart {
   int jumlah, id;
-  Product product;
+  ProductModel product;
 
   Cart({
     @required this.product,
@@ -11,22 +11,24 @@ class Cart {
     @required this.id,
   });
 
-  Cart.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    product = Product.fromJson(json['product']);
-    jumlah = json['jumlah'];
+  factory Cart.fromJson(Map<String, dynamic> json) {
+    return Cart(
+      id: json['id'],
+      product: ProductModel.fromJson(json['product']),
+      jumlah: json['jumlah'],
+    );
   }
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'product': product.toJson(),
-      'jumlah': jumlah,
-    };
-  }
+  // Map<String, dynamic> toJson() {
+  //   return {
+  //     'id': id,
+  //     'product': product.toJson(),
+  //     'jumlah': jumlah,
+  //   };
+  // }
 }
 
 List<Cart> datacarts = [
-  Cart(id: 1, product: products[1], jumlah: 2),
-  Cart(id: 2, product: products[3], jumlah: 4),
-  Cart(id: 3, product: products[0], jumlah: 4),
+  Cart(id: 1, product: dataProducts[1], jumlah: 2),
+  Cart(id: 2, product: dataProducts[3], jumlah: 4),
+  Cart(id: 3, product: dataProducts[0], jumlah: 4),
 ];
