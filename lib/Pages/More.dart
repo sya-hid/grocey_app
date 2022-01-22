@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:grocery_delivery/Pages/AppBar.dart';
 import 'package:grocery_delivery/models/user.dart';
 
 class MorePage extends StatelessWidget {
@@ -18,25 +19,7 @@ class MorePage extends StatelessWidget {
       {'icon': Icons.person_add_alt_1_outlined, 'text': 'Invite Friends'},
     ];
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios_rounded,
-            color: Colors.black,
-            size: 16,
-          ),
-          onPressed: () {},
-        ),
-        actions: [
-          IconButton(
-            color: Colors.black,
-            icon: IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
-            onPressed: () {},
-          )
-        ],
-      ),
+      appBar: AppBar2(context),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(

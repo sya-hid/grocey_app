@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:grocery_delivery/Pages/AppBar.dart';
 import 'package:grocery_delivery/Pages/most_ordered_card.dart';
 import 'package:grocery_delivery/models/product.dart';
 import 'package:grocery_delivery/models/user.dart';
@@ -10,38 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: Icon(
-          Icons.grid_view,
-          color: Colors.black,
-        ),
-        centerTitle: true,
-        title: Column(
-          children: [
-            Text(
-              'Your Location',
-              style: GoogleFonts.poppins()
-                  .copyWith(fontSize: 14, color: Colors.grey),
-            ),
-            Text(
-              user.name + ', ' + user.location,
-              style: GoogleFonts.poppins().copyWith(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
-            )
-          ],
-        ),
-        actions: [
-          IconButton(
-            color: Colors.grey.withOpacity(0.2),
-            icon: ClipOval(child: Image.asset("assets/" + user.image)),
-            onPressed: () {},
-          )
-        ],
-      ),
+      appBar: AppBar1(context),
       body: Column(
         children: [
           SizedBox(height: 20),
@@ -113,6 +83,7 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
 
 class ExitingDeals extends StatelessWidget {
   const ExitingDeals({

@@ -36,6 +36,7 @@ class CartCard extends StatelessWidget {
           SizedBox(width: 10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
                 cart.product.name,
@@ -44,7 +45,7 @@ class CartCard extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 10),
+              // SizedBox(height: 10),
               Text.rich(
                 TextSpan(
                   children: [
@@ -65,7 +66,7 @@ class CartCard extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 10),
+              // SizedBox(height: 10),
               Text(
                 '\$${cart.product.price * cart.jumlah}',
                 style: GoogleFonts.poppins()
@@ -83,7 +84,9 @@ class CartCard extends StatelessWidget {
                 onPressed: () {
                   print(cartProvider.carts);
                 }),
-            Text(cart.jumlah.toString()),
+            Text(cart.jumlah.toString(),
+                style: GoogleFonts.poppins()
+                    .copyWith(fontSize: 16, fontWeight: FontWeight.bold)),
             IconButton(
                 icon: Icon(
                   Icons.arrow_forward_ios,

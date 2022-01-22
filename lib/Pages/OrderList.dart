@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:grocery_delivery/Pages/AppBar.dart';
 import 'package:grocery_delivery/Pages/ordered_item_card.dart';
 import 'package:grocery_delivery/models/order.dart';
 
@@ -9,25 +10,7 @@ class OrderListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios_rounded,
-            color: Colors.black,
-            size: 16,
-          ),
-          onPressed: () {},
-        ),
-        actions: [
-          IconButton(
-            color: Colors.black,
-            icon: IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
-            onPressed: () {},
-          )
-        ],
-      ),
+      appBar:AppBar2(context),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
