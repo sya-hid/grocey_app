@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class ProductModel {
   double price;
   int id;
@@ -19,27 +17,7 @@ class ProductModel {
         id: json["id"] as int);
   }
 
-  // Map<String, dynamic> toJson() {
-  //   return {'id': id, 'name': name, 'price': price, 'image': image};
-  // }
-
-  // ProductModel.fromJson(Map<String, dynamic> json)
-  //     : id = json["id"],
-  //       name = json["name"],
-  //       price = double.parse(json["price"].toString()),
-  //       image = json["image"];
-
-  // Map<String, dynamic> toJson() {
-  //   return {
-  //     "name": name,
-  //     "image": image,
-  //     "price": price,
-  //     "id": id,
-  //   };
-  // }
 }
-
-// [{"name":"Grape","image":"grape.png","price":18,"id":"1"},{"name":"Honeydew","image":"honeydew.png","price":20,"id":"2"},{"name":"Orange","image":"orange.png","price":19,"id":"3"},{"name":"Banana","image":"banana.png","price":15,"id":"4"}]
 
 List<ProductModel> dataProducts = [
   ProductModel(id: 1, price: 20, name: 'Grape', image: 'grape.png'),

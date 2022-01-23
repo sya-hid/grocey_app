@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery_delivery/models/user.dart';
 
-AppBar AppBar1(BuildContext context) {
+AppBar appBar1(BuildContext context) {
   return AppBar(
     backgroundColor: Colors.transparent,
     elevation: 0,
@@ -35,7 +35,7 @@ AppBar AppBar1(BuildContext context) {
   );
 }
 
-AppBar AppBar2(BuildContext context) {
+AppBar appBar2(BuildContext context) {
   return AppBar(
     backgroundColor: Colors.transparent,
     elevation: 0,

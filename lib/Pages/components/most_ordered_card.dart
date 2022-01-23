@@ -53,49 +53,52 @@ class MostOrderedCard2 extends StatelessWidget {
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(product.name,
                           style: GoogleFonts.poppins().copyWith(
                               fontWeight: FontWeight.bold, fontSize: 16)),
                       // SizedBox(height: 5),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text.rich(
-                            TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: '\$${product.price} ',
-                                  style: GoogleFonts.poppins().copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 12),
-                                ),
-                                TextSpan(
-                                  text: 'perKg',
-                                  style: GoogleFonts.poppins().copyWith(
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 10),
-                                )
-                              ],
+                      Container(
+                        width: 90,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: '\$${product.price} ',
+                                    style: GoogleFonts.poppins().copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12),
+                                  ),
+                                  TextSpan(
+                                    text: 'perKg',
+                                    style: GoogleFonts.poppins().copyWith(
+                                        fontWeight: FontWeight.normal,
+                                        fontSize: 10),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.all(3),
-                            decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.4),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: Icon(
-                              Icons.add,
-                              size: 12,
+                            Container(
+                              padding: const EdgeInsets.all(3),
+                              decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(0.4),
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: Icon(
+                                Icons.add,
+                                size: 12,
+                              ),
                             ),
-                          ),
-                          // IconButton(
-                          //   icon: Icon(Icons.add),
-                          //   iconSize: 14,
-                          //   onPressed: () {},
-                          // )
-                        ],
+                            // IconButton(
+                            //   icon: Icon(Icons.add),
+                            //   iconSize: 14,
+                            //   onPressed: () {},
+                            // )
+                          ],
+                        ),
                       )
                     ],
                   )

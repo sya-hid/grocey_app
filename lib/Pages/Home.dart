@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar1(context),
+      appBar: appBar1(context),
       body: Column(
         children: [
           SizedBox(height: 20),

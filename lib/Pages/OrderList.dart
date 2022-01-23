@@ -10,18 +10,18 @@ class OrderListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar1(context),
+      appBar: appBar1(context),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 20),
-            SectionTile(title: '19 Jan 2022'),
+            SectionTile(title: '22 Jan 2022'),
             SizedBox(height: 30),
             OrderListItemPending(),
             SizedBox(height: 30),
-            SectionTile(title: '15 Jan 2022'),
+            SectionTile(title: '16 Jan 2022'),
             OrderListItemDelivered(),
           ],
         ),

@@ -8,7 +8,7 @@ class MorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> order_sum = [
+    List<Map<String, dynamic>> orderSum = [
       {'text': "Total Order", 'number': 323},
       {'text': "Delivered", 'number': 305},
       {'text': "Pending", 'number': 18},
@@ -19,7 +19,7 @@ class MorePage extends StatelessWidget {
       {'icon': Icons.person_add_alt_1_outlined, 'text': 'Invite Friends'},
     ];
     return Scaffold(
-      appBar: AppBar1(context),
+      appBar: appBar1(context),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
@@ -64,10 +64,10 @@ class MorePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ...List.generate(
-                  order_sum.length,
+                  orderSum.length,
                   (index) => OrderCard(
-                    number: order_sum[index]['number'],
-                    text: order_sum[index]['text'],
+                    number: orderSum[index]['number'],
+                    text: orderSum[index]['text'],
                   ),
                 ),
               ],
