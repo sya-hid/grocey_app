@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery_delivery/main.dart';
+import 'package:grocery_delivery/models/user.dart';
+import 'package:grocery_delivery/provider/userProvider.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    UserProvider userProvider = Provider.of<UserProvider>(context);
+    UserModel datauser = userProvider.user;
+
+    getStarted() async {
+      await userProvider.getuser();
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => MainPage()));
+    }
+
     return Scaffold(
       body: Stack(
         children: [
@@ -63,10 +75,11 @@ class SplashScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 15),
                   FlatButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => MainPage()));
-                    },
+                    onPressed: getStarted,
+                    // onPressed: () {
+                    //   Navigator.push(context,
+                    //       MaterialPageRoute(builder: (context) => MainPage()));
+                    // },
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       padding: const EdgeInsets.all(20),

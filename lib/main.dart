@@ -6,6 +6,7 @@ import 'package:grocery_delivery/Pages/OrderList.dart';
 import 'package:grocery_delivery/Pages/cart_provider.dart';
 import 'package:grocery_delivery/Pages/produktest.dart';
 import 'package:grocery_delivery/page_provider.dart';
+import 'package:grocery_delivery/provider/productProvider.dart';
 import 'package:grocery_delivery/splah_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => CartProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ProductProvider(),
         ),
       ],
       child: MaterialApp(
@@ -49,6 +53,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     PageProvider pageProvider = Provider.of<PageProvider>(context);
+    // ProductProvider userProvider = Provider.of<ProductProvider>(context);
     Widget body() {
       switch (pageProvider.currentIndex) {
         case 0:
@@ -84,6 +89,7 @@ class BottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     PageProvider pageProvider = Provider.of<PageProvider>(context);
+    // ProductProvider userProvider = Provider.of<ProductProvider>(context);
     return BottomAppBar(
       child: BottomNavigationBar(
           backgroundColor: Colors.white,

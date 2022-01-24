@@ -34,14 +34,20 @@ class MorePage extends StatelessWidget {
                     width: 200,
                     height: 200,
                     child: ClipOval(
-                      child: Image.asset('assets/' + user.image),
+                      child: Image.network(
+                        user.image,
+                        fit: BoxFit.fill,
+                      ),
+                      // child: Image.asset('assets/' + user.image),
                     ),
                   ),
+                  SizedBox(height: 30),
                   Text(user.name,
                       style: GoogleFonts.poppins().copyWith(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                       )),
+                  SizedBox(height: 10),
                   Text(user.email,
                       style: GoogleFonts.poppins().copyWith(
                         color: Colors.grey,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_delivery/Pages/components/most_ordered_card.dart';
 import 'package:grocery_delivery/models/product.dart';
-import 'package:grocery_delivery/services/fetchProducts.dart';
+import 'package:grocery_delivery/services/productService.dart';
 
 class Produk extends StatelessWidget {
   const Produk({Key key}) : super(key: key);
@@ -11,7 +11,7 @@ class Produk extends StatelessWidget {
     return Column(
       children: [
         FutureBuilder(
-          future: fetchProducts(),
+          future: ProductService().getProducts(),
           builder: (context, snapshot) => snapshot.hasData
               ? TestT(
                   products: snapshot.data,
@@ -19,12 +19,12 @@ class Produk extends StatelessWidget {
               : Text('data kosong'),
         ),
         FutureBuilder(
-            future: fetchProducts(),
+            future: ProductService().getProducts(),
             builder: (context, snapshot) {
               return snapshot.hasData
                   ? TestT(products: snapshot.data)
                   : Center(child: Image.asset("assets/ripple.gif"));
-            })
+            }),
       ],
     );
   }

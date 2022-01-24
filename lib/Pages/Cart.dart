@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery_delivery/Pages/components/AppBar.dart';
 import 'package:grocery_delivery/Pages/components/cart_item.dart';
 import 'package:grocery_delivery/models/cart.dart';
+import 'package:grocery_delivery/models/user.dart';
 
 class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -23,6 +24,7 @@ class CartPage extends StatelessWidget {
                 ),
               ),
             ),
+         
             Expanded(
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,

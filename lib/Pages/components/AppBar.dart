@@ -28,7 +28,13 @@ AppBar appBar1(BuildContext context) {
     actions: [
       IconButton(
         color: Colors.grey.withOpacity(0.2),
-        icon: ClipOval(child: Image.asset("assets/" + user.image)),
+        icon: ClipOval(
+            child: Image.network(
+          user.image,
+          width: 30,
+          height: 30,
+          fit: BoxFit.fill,
+        )),
         onPressed: () {},
       )
     ],
