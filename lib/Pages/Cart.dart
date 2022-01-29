@@ -20,22 +20,29 @@ class CartPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 20),
-            Text(
-              cart.length.toString() + ' Items ready for checkout',
-              style: GoogleFonts.poppins().copyWith(
-                fontWeight: FontWeight.bold,
-                fontSize: 22,
-              ),
+            cartProvider.carts.isNotEmpty
+                ? Text(
+                    cart.length.toString() + ' Items ready for checkout',
+                    style: GoogleFonts.poppins().copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22,
+                    ),
+                  )
+                : Text(''),
+
+            SizedBox(height: 20),
+            Expanded(
+              child: cart.length > 0
+                  ? ListView(
+                      children: cart.map((e) => CartCard(cart: e)).toList())
+                  : Center(
+                      child: Text(cart.length.toString() + 'Cart Kosong',
+                          style: GoogleFonts.poppins().copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22,
+                          ))),
             ),
 
-            Expanded(
-              child: cartProvider.carts.isNotEmpty
-                  ? ListView(
-                      children: cartProvider.carts
-                          .map((e) => CartCard(cart: e))
-                          .toList())
-                  : Center(child: Image.asset("assets/ripple.gif")),
-            ),
             // Expanded(
             //   child: FutureBuilder(
             //     future: CartService().getCarts(),

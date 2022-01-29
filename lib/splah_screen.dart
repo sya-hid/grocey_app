@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:grocery_delivery/provider/cartProvider.dart';
-// import 'package:grocery_delivery/provider/productProvider.dart';
+import 'package:grocery_delivery/main.dart';
+import 'package:grocery_delivery/provider/cartProvider.dart';
+import 'package:grocery_delivery/provider/productProvider.dart';
 import 'package:grocery_delivery/provider/userProvider.dart';
 import 'package:grocery_delivery/size_config.dart';
 import 'package:provider/provider.dart';
@@ -12,18 +13,19 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
-    // CartProvider cartProvider = Provider.of<CartProvider>(context);
-    // ProductProvider productProvider = Provider.of<ProductProvider>(context);
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
     // UserModel datauser = userProvider.user;
 
     SizeConfig().init(context);
     double defaultSize = SizeConfig.defaultSize;
     getStarted() async {
       await userProvider.getuser();
-      // await cartProvider.getCarts();
-      // await productProvider.getProducts();
-      // Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage()));
-      Navigator.popAndPushNamed(context, '/mainPage');
+      await cartProvider.getCarts();
+      await productProvider.getProducts();
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => MainPage()));
+      // Navigator.popAndPushNamed(context, '/mainPage');
     }
 
     return Scaffold(

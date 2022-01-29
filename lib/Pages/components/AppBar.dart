@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery_delivery/models/user.dart';
-
 AppBar appBar1(BuildContext context) {
   return AppBar(
     backgroundColor: Colors.transparent,

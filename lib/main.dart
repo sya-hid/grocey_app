@@ -3,7 +3,6 @@ import 'package:grocery_delivery/Pages/Cart.dart';
 import 'package:grocery_delivery/Pages/Home.dart';
 import 'package:grocery_delivery/Pages/More.dart';
 import 'package:grocery_delivery/Pages/OrderList.dart';
-import 'package:grocery_delivery/Pages/produktest.dart';
 import 'package:grocery_delivery/page_provider.dart';
 import 'package:grocery_delivery/provider/cartProvider.dart';
 import 'package:grocery_delivery/provider/productProvider.dart';
@@ -35,12 +34,12 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        // title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
           '/': (context) => SplashScreen(),
-          '/mainPage': (context) => MainPage(),
+          // '/mainPage': (context) => MainPage(),
         },
       ),
     );
@@ -58,7 +57,6 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     PageProvider pageProvider = Provider.of<PageProvider>(context);
-    // ProductProvider userProvider = Provider.of<ProductProvider>(context);
     Widget body() {
       switch (pageProvider.currentIndex) {
         case 0:
@@ -73,9 +71,9 @@ class _MainPageState extends State<MainPage> {
         case 3:
           return MorePage();
           break;
-        case 4:
-          return Produk();
-          break;
+        // case 4:
+        //   return Produk();
+        //   break;
         default:
           return HomePage();
       }
@@ -98,7 +96,7 @@ class BottomNav extends StatelessWidget {
       child: BottomNavigationBar(
           backgroundColor: Colors.white,
           currentIndex: pageProvider.currentIndex,
-          selectedItemColor: Colors.lightGreenAccent,
+          selectedItemColor: Colors.green,
           type: BottomNavigationBarType.fixed,
           onTap: (value) {
             pageProvider.currentIndex = value;
@@ -113,8 +111,8 @@ class BottomNav extends StatelessWidget {
             BottomNavigationBarItem(
                 icon: Icon(Icons.miscellaneous_services_outlined),
                 label: 'More'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.chat_outlined), label: 'Message'),
+            // BottomNavigationBarItem(
+            //     icon: Icon(Icons.chat_outlined), label: 'Message'),
           ]),
     );
   }

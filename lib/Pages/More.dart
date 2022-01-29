@@ -32,7 +32,7 @@ class MorePage extends StatelessWidget {
             Stack(
               children: [
                 Container(
-                  height: SizeConfig.screenHeight * 0.2,
+                  height: SizeConfig.screenHeight * 0.3,
                   width: SizeConfig.screenWidth,
                   decoration: BoxDecoration(
                     color: Colors.blue.withOpacity(0.1),
@@ -44,7 +44,7 @@ class MorePage extends StatelessWidget {
                 Center(
                   child: Column(
                     children: [
-                      SizedBox(height: SizeConfig.screenHeight * 0.2 - 75),
+                      SizedBox(height: SizeConfig.screenHeight * 0.3 - 75),
                       Container(
                         width: 150,
                         height: 150,
@@ -56,7 +56,7 @@ class MorePage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: defaultSize * 2),
+                      SizedBox(height: defaultSize * 5),
                       Text(
                         user.name,
                         style: GoogleFonts.poppins().copyWith(
@@ -84,7 +84,7 @@ class MorePage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: defaultSize * 2),
+                  SizedBox(height: defaultSize * 4),
                   Text(
                     'Order Summary',
                     style: GoogleFonts.poppins().copyWith(
