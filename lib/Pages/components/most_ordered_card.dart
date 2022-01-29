@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery_delivery/models/product.dart';
+import 'package:grocery_delivery/provider/cartProvider.dart';
+import 'package:provider/provider.dart';
 
 class MostOrderedCard2 extends StatelessWidget {
   final ProductModel product;
@@ -13,8 +15,10 @@ class MostOrderedCard2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
+
     return Container(
-        margin: EdgeInsets.only(left: 20, right: 0, top: 20, bottom: 0),
+        margin: EdgeInsets.only(left: 20, right: 0, bottom: 0),
         decoration: BoxDecoration(
           color: Colors.lightGreen,
           borderRadius: BorderRadius.circular(20),
@@ -82,14 +86,20 @@ class MostOrderedCard2 extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Container(
-                              padding: const EdgeInsets.all(3),
-                              decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.4),
-                                  borderRadius: BorderRadius.circular(5)),
-                              child: Icon(
-                                Icons.add,
-                                size: 12,
+                            GestureDetector(
+                              onTap: () {
+                                cartProvider.addCart(product);
+                                // showSuccessDialog();
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(3),
+                                decoration: BoxDecoration(
+                                    color: Colors.white.withOpacity(0.4),
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: Icon(
+                                  Icons.add,
+                                  size: 12,
+                                ),
                               ),
                             ),
                             // IconButton(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_delivery/models/product.dart';
-import 'package:grocery_delivery/models/user.dart';
 import 'package:grocery_delivery/services/productService.dart';
 
 class ProductProvider with ChangeNotifier {
@@ -15,9 +14,10 @@ class ProductProvider with ChangeNotifier {
     try {
       List<ProductModel> products = await ProductService().getProducts();
       _products = products;
+      return true;
     } catch (e) {
       print(e);
+      return false;
     }
   }
-
 }

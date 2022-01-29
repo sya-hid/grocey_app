@@ -15,8 +15,6 @@ class UserProvider with ChangeNotifier {
     try {
       UserModel user = await UserService().getUser();
       _user = user;
-      print(_user);
-      print(user);
       return true;
     } catch (e) {
       print(e);

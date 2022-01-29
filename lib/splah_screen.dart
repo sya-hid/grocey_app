@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:grocery_delivery/main.dart';
-import 'package:grocery_delivery/models/user.dart';
+// import 'package:grocery_delivery/provider/cartProvider.dart';
+// import 'package:grocery_delivery/provider/productProvider.dart';
 import 'package:grocery_delivery/provider/userProvider.dart';
+import 'package:grocery_delivery/size_config.dart';
 import 'package:provider/provider.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -11,12 +12,18 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
-    UserModel datauser = userProvider.user;
+    // CartProvider cartProvider = Provider.of<CartProvider>(context);
+    // ProductProvider productProvider = Provider.of<ProductProvider>(context);
+    // UserModel datauser = userProvider.user;
 
+    SizeConfig().init(context);
+    double defaultSize = SizeConfig.defaultSize;
     getStarted() async {
       await userProvider.getuser();
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => MainPage()));
+      // await cartProvider.getCarts();
+      // await productProvider.getProducts();
+      // Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage()));
+      Navigator.popAndPushNamed(context, '/mainPage');
     }
 
     return Scaffold(
@@ -27,71 +34,74 @@ class SplashScreen extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             color: Colors.white,
           ),
-          Container(
-            height: MediaQuery.of(context).size.height * 0.7,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(40),
-                bottomRight: Radius.circular(40),
-              ),
-            ),
-            child: DecoratedBox(
+          Expanded(
+            child: Container(
+              height: SizeConfig.screenHeight * 0.65,
+              width: SizeConfig.screenWidth,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage('assets/splashImage.png'),
+                color: Colors.blue.withOpacity(0.8),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(40),
+                  bottomRight: Radius.circular(40),
+                ),
+              ),
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage('assets/splashImage.png'),
+                  ),
                 ),
               ),
             ),
           ),
           Positioned(
-            bottom: 40,
+            bottom: defaultSize * 2,
             left: 30,
             right: 30,
             child: Container(
-              // color: Colors.red,
-              width: MediaQuery.of(context).size.width * 0.6,
+              width: SizeConfig.screenWidth * 0.6,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Grocery delivery\nat your door',
+                    'Grocery delivery at your door',
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins()
-                        .copyWith(fontWeight: FontWeight.bold, fontSize: 32),
+                    style: GoogleFonts.poppins().copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: defaultSize * 3.5),
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: defaultSize * 1.5),
                   Text(
-                    'Order grocery from any where and\nget delivery at your door',
+                    'Order grocery from any where and get delivery at your door',
                     textAlign: TextAlign.center,
                     style: GoogleFonts.poppins().copyWith(
                         fontWeight: FontWeight.normal,
-                        fontSize: 16,
+                        fontSize: defaultSize * 2,
                         color: Colors.grey),
                   ),
-                  SizedBox(height: 15),
-                  FlatButton(
-                    onPressed: getStarted,
+                  SizedBox(height: defaultSize * 1.5),
+                  GestureDetector(
+                    onTap: getStarted,
                     // onPressed: () {
                     //   Navigator.push(context,
                     //       MaterialPageRoute(builder: (context) => MainPage()));
                     // },
                     child: Container(
                       width: MediaQuery.of(context).size.width,
-                      padding: const EdgeInsets.all(20),
+                      padding:
+                          EdgeInsets.symmetric(vertical: defaultSize * 1.5),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(10),
                         color: Colors.lightGreen,
                       ),
                       child: Text(
                         'Order Now',
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.poppins()
-                            .copyWith(fontSize: 18, color: Colors.white),
+                        style: GoogleFonts.poppins().copyWith(
+                            fontSize: defaultSize * 2, color: Colors.white),
                       ),
                     ),
                   ),

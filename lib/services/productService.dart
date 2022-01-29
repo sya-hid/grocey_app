@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:grocery_delivery/models/product.dart';
-import 'package:grocery_delivery/models/user.dart';
 import 'package:http/http.dart' as http;
 
 class ProductService {

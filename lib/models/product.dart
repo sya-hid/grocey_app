@@ -19,7 +19,7 @@ class ProductModel {
 
 }
 
-List<ProductModel> dataProducts = [
+List<ProductModel> products = [
   ProductModel(id: 1, price: 20, name: 'Grape', image: 'grape.png'),
   ProductModel(id: 2, price: 22, name: 'Honeydew', image: 'honeydew.png'),
   ProductModel(id: 3, price: 15, name: 'Orange', image: 'orange.png'),

@@ -21,15 +21,15 @@ class OrderedItemCard2 extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(
               color: Colors.lightGreen.withOpacity(0.3),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Image.asset(
               'assets/' + order.product.image,
-              width: 70,
-              height: 70,
+              width: 60,
+              height: 60,
             ),
           ),
           SizedBox(width: 10),

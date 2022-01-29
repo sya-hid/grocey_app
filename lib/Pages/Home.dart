@@ -12,98 +12,103 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar1(context),
-      body: Column(
-        children: [
-          SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Container(
-              height: 200,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.grey.withOpacity(0.2)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'What would you \n like to order ?',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
-                        fontSize: 28,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(30)),
-                    child: TextFormField(
-                      style: GoogleFonts.poppins()
-                          .copyWith(fontSize: 16, color: Colors.grey),
-                      onChanged: (value) {},
-                      decoration: InputDecoration(
-                          hintText: "Search Grocery",
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          hintStyle: GoogleFonts.poppins().copyWith(
-                            fontSize: 16,
-                            color: Colors.grey,
-                          ),
-                          prefixIcon: Icon(Icons.search),
-                          suffixIcon: Container(
-                              width: 50,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                  color: Colors.lightGreen,
-                                  borderRadius: BorderRadius.circular(30)),
-                              child: Icon(
-                                Icons.tune_outlined,
-                                color: Colors.white,
-                              )),
-                          contentPadding: const EdgeInsets.all(16)),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: [
+            SizedBox(height: 30),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
+                height: 200,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.grey.withOpacity(0.2)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'What would you \n like to order ?',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.poppins(
+                          // fontSize: 28,
+                          fontSize: 24,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
                     ),
-                  ),
-                ],
+                    SizedBox(height: 20),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(30)),
+                      child: TextFormField(
+                        style: GoogleFonts.poppins()
+                            .copyWith(fontSize: 16, color: Colors.grey),
+                        onChanged: (value) {},
+                        decoration: InputDecoration(
+                            hintText: "Search Grocery",
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            hintStyle: GoogleFonts.poppins().copyWith(
+                              fontSize: 16,
+                              color: Colors.grey,
+                            ),
+                            prefixIcon: Icon(Icons.search),
+                            suffixIcon: Container(
+                                width: 50,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                    color: Colors.lightGreen,
+                                    borderRadius: BorderRadius.circular(30)),
+                                child: Icon(
+                                  Icons.tune_outlined,
+                                  color: Colors.white,
+                                )),
+                            contentPadding: const EdgeInsets.all(16)),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 30),
-          SectionTile(title: 'Most Ordered'),
+            SizedBox(height: 30),
+            SectionTile(title: 'Most Ordered'),
+            SizedBox(height: 20),
 
-          //dummy dari mockupio
+            //dummy dari mockupio
 
-          FutureBuilder(
-            future: ProductService().getProducts(),
-            builder: (context, snapshot) => snapshot.hasData
-                ? MostOrdered(
-                    products: snapshot.data,
-                  )
-                : Center(child: Image.asset("assets/ripple.gif")),
-          ),
-          // FutureBuilder(
-          //   future: ProductService().getUser(),
-          //   builder: (context, snapshot) => snapshot.hasData
-          //       ? DataText(datauser: snapshot.data)
-          //       : Center(child: Text('kosong')),
-          // ),
-          // FutureBuilder(
-          //   future: ProductService().user(),
-          //   builder: (context, snapshot) => snapshot.hasData
-          //       ? DataText(datauser: snapshot.data)
-          //       : Center(child: Image.asset("assets/ripple.gif")),
-          // ),
-          //dummy dari model
-          // MostOrdered2(),
-          SizedBox(height: 30),
-          SectionTile(title: 'Exiting Deals'),
-          SizedBox(height: 20),
-          
-          ExitingDeals()
-        ],
+            FutureBuilder(
+              future: ProductService().getProducts(),
+              builder: (context, snapshot) => snapshot.hasData
+                  ? MostOrdered(
+                      products: snapshot.data,
+                    )
+                  : Center(child: Image.asset("assets/ripple.gif")),
+            ),
+            // FutureBuilder(
+            //   future: ProductService().getUser(),
+            //   builder: (context, snapshot) => snapshot.hasData
+            //       ? DataText(datauser: snapshot.data)
+            //       : Center(child: Text('kosong')),
+            // ),
+            // FutureBuilder(
+            //   future: ProductService().user(),
+            //   builder: (context, snapshot) => snapshot.hasData
+            //       ? DataText(datauser: snapshot.data)
+            //       : Center(child: Image.asset("assets/ripple.gif")),
+            // ),
+            //dummy dari model
+            // MostOrdered2(),
+            SizedBox(height: 30),
+            SectionTile(title: 'Exiting Deals'),
+            SizedBox(height: 20),
+            ExitingDeals(),
+            SizedBox(height: 20),
+          ],
+        ),
       ),
     );
   }
@@ -156,7 +161,7 @@ class ExitingDealCard extends StatelessWidget {
           left: 20,
         ),
         width: MediaQuery.of(context).size.width * 0.8,
-        height: 150,
+        // height: MediaQuery.of(context).size.height * 0.15,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: Colors.grey.withOpacity(0.3)),
@@ -173,29 +178,38 @@ class ExitingDealCard extends StatelessWidget {
                   children: [
                     Text(
                       text,
+                      maxLines: 2,
                       style: GoogleFonts.poppins().copyWith(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    FlatButton(
-                        onPressed: () {},
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 20),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.lightGreen),
-                          child: Text(
-                            'Get Now',
-                            style: GoogleFonts.poppins()
-                                .copyWith(color: Colors.white),
-                          ),
-                        ))
+                    SizedBox(height: 10),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 20),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.lightGreen),
+                        child: Text(
+                          'Get Now',
+                          style: GoogleFonts.poppins()
+                              .copyWith(color: Colors.white),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
-              Expanded(child: Image.asset('assets/' + image)),
+              // Spacer(),
+              Expanded(
+                child: Container(
+                  height: 100,
+                  child: Image.asset('assets/' + image),
+                ),
+              ),
             ],
           ),
         ),
@@ -221,7 +235,7 @@ class SectionTile extends StatelessWidget {
           Text(
             title,
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
@@ -266,24 +280,24 @@ class MostOrdered extends StatelessWidget {
   }
 }
 
-class MostOrdered2 extends StatelessWidget {
-  const MostOrdered2({
-    Key key,
-  }) : super(key: key);
+// class MostOrdered2 extends StatelessWidget {
+//   const MostOrdered2({
+//     Key key,
+//   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(children: [
-        ...List.generate(
-            dataProducts.length,
-            (index) => MostOrderedCard2(
-                  press: () {},
-                  product: dataProducts[index],
-                )),
-        SizedBox(width: 15),
-      ]),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return SingleChildScrollView(
+//       scrollDirection: Axis.horizontal,
+//       child: Row(children: [
+//         ...List.generate(
+//             products.length,
+//             (index) => MostOrderedCard2(
+//                   press: () {},
+//                   product: products[index],
+//                 )),
+//         SizedBox(width: 15),
+//       ]),
+//     );
+//   }
+// }

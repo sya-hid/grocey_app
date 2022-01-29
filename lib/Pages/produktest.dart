@@ -25,6 +25,20 @@ class Produk extends StatelessWidget {
                   ? TestT(products: snapshot.data)
                   : Center(child: Image.asset("assets/ripple.gif"));
             }),
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            "Text here",
+            style: TextStyle(fontSize: 18),
+          ),
+        ),
+        FittedBox(
+          fit: BoxFit.cover,
+          child: Text(
+            "Text here",
+            //style: TextStyle(fontSize: 18),
+          ),
+        ),  
       ],
     );
   }

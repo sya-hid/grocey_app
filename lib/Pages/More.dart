@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery_delivery/Pages/components/AppBar.dart';
 import 'package:grocery_delivery/models/user.dart';
+import 'package:grocery_delivery/size_config.dart';
 
 class MorePage extends StatelessWidget {
   const MorePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    double defaultSize = SizeConfig.defaultSize;
+
     List<Map<String, dynamic>> orderSum = [
       {'text': "Total Order", 'number': 323},
       {'text': "Delivered", 'number': 305},
@@ -19,78 +23,110 @@ class MorePage extends StatelessWidget {
       {'icon': Icons.person_add_alt_1_outlined, 'text': 'Invite Friends'},
     ];
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: appBar1(context),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 100),
-            Center(
-              child: Column(
-                children: [
-                  Container(
-                    width: 200,
-                    height: 200,
-                    child: ClipOval(
-                      child: Image.network(
-                        user.image,
-                        fit: BoxFit.fill,
-                      ),
-                      // child: Image.asset('assets/' + user.image),
+            Stack(
+              children: [
+                Container(
+                  height: SizeConfig.screenHeight * 0.2,
+                  width: SizeConfig.screenWidth,
+                  decoration: BoxDecoration(
+                    color: Colors.blue.withOpacity(0.1),
+                    borderRadius: BorderRadius.vertical(
+                      bottom: Radius.circular(100),
                     ),
                   ),
-                  SizedBox(height: 30),
-                  Text(user.name,
-                      style: GoogleFonts.poppins().copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      )),
-                  SizedBox(height: 10),
-                  Text(user.email,
-                      style: GoogleFonts.poppins().copyWith(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 14,
-                      ))
-                ],
-              ),
-            ),
-            SizedBox(height: 40),
-            Text(
-              'Order Summary',
-              style: GoogleFonts.poppins().copyWith(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-            ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ...List.generate(
-                  orderSum.length,
-                  (index) => OrderCard(
-                    number: orderSum[index]['number'],
-                    text: orderSum[index]['text'],
+                ),
+                Center(
+                  child: Column(
+                    children: [
+                      SizedBox(height: SizeConfig.screenHeight * 0.2 - 75),
+                      Container(
+                        width: 150,
+                        height: 150,
+                        child: ClipOval(
+                          child: FadeInImage.assetNetwork(
+                            image: user.image,
+                            placeholder: "assets/spinner.gif",
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: defaultSize * 2),
+                      Text(
+                        user.name,
+                        style: GoogleFonts.poppins().copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22,
+                        ),
+                      ),
+                      SizedBox(height: defaultSize * 1),
+                      Text(
+                        user.email,
+                        style: GoogleFonts.poppins().copyWith(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 16,
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 20),
-            Expanded(
+            Container(
+              height: MediaQuery.of(context).size.height * 0.4,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ...List.generate(
-                    option.length,
-                    (index) => ListOptionCard(
-                      ikon: option[index]['icon'],
-                      text: option[index]['text'],
+                  SizedBox(height: defaultSize * 2),
+                  Text(
+                    'Order Summary',
+                    style: GoogleFonts.poppins().copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
                     ),
                   ),
-                  Spacer()
+                  SizedBox(height: defaultSize * 1),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ...List.generate(
+                          orderSum.length,
+                          (index) => OrderCard(
+                            number: orderSum[index]['number'],
+                            text: orderSum[index]['text'],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Expanded(
+                    child: Container(
+                      // height: SizeConfig.screenHeight * 0.5,
+                      child: Column(
+                        // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          ...List.generate(
+                            option.length,
+                            (index) => ListOptionCard(
+                              ikon: option[index]['icon'],
+                              text: option[index]['text'],
+                            ),
+                          ),
+                          Spacer()
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -127,11 +163,12 @@ class ListOptionCard extends StatelessWidget {
             text,
             style: GoogleFonts.poppins().copyWith(
               fontWeight: FontWeight.bold,
-              fontSize: 20,
+              fontSize: 18,
             ),
           ),
           Spacer(),
-          Icon(Icons.arrow_forward_ios, size: 22),
+          Icon(Icons.arrow_forward_ios,
+              color: Colors.grey.withOpacity(0.5), size: 22),
         ],
       ),
     );
@@ -149,28 +186,31 @@ class OrderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.red.withOpacity(0.2),
+    return Padding(
+      padding: const EdgeInsets.only(right: 20),
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: Colors.red.withOpacity(0.2),
+        ),
+        child: Column(children: [
+          Text(
+            number.toString(),
+            style: GoogleFonts.poppins().copyWith(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
+          ),
+          Text(
+            text,
+            style: GoogleFonts.poppins().copyWith(
+              fontWeight: FontWeight.normal,
+              fontSize: 14,
+            ),
+          ),
+        ]),
       ),
-      child: Column(children: [
-        Text(
-          number.toString(),
-          style: GoogleFonts.poppins().copyWith(
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
-        ),
-        Text(
-          text,
-          style: GoogleFonts.poppins().copyWith(
-            fontWeight: FontWeight.normal,
-            fontSize: 14,
-          ),
-        ),
-      ]),
     );
   }
 }

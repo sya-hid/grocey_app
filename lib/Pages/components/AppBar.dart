@@ -20,9 +20,11 @@ AppBar appBar1(BuildContext context) {
         ),
         Text(
           user.name + ', ' + user.location,
+          maxLines: 2,
+          textAlign: TextAlign.center,
           style: GoogleFonts.poppins().copyWith(
               fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
-        )
+        ),
       ],
     ),
     actions: [

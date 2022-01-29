@@ -1,26 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery_delivery/models/cart.dart';
+import 'package:grocery_delivery/provider/cartProvider.dart';
+import 'package:provider/provider.dart';
 
 class CartCard extends StatelessWidget {
-  final Cart cart;
+  final CartModel cart;
 
-  const CartCard({this.cart});
+  const CartCard({@required this.cart});
 
   @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
+
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       margin: const EdgeInsets.symmetric(vertical: 10),
       width: double.infinity,
       height: 100,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: Colors.lightGreen.withOpacity(0.3)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: Colors.lightGreen.withOpacity(0.3),
+              color: Colors.white.withOpacity(0.3),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Image.asset(
@@ -64,10 +71,10 @@ class CartCard extends StatelessWidget {
               ),
               // SizedBox(height: 10),
               Text(
-                '\$${cart.product.price * cart.jumlah}',
+                '\$${cart.product.price * cart.jumlah}' ,
                 style: GoogleFonts.poppins()
                     .copyWith(fontWeight: FontWeight.bold, fontSize: 16),
-              )
+              ),
             ],
           ),
           Spacer(),
@@ -77,7 +84,9 @@ class CartCard extends StatelessWidget {
                   Icons.arrow_back_ios,
                   size: 14,
                 ),
-                onPressed: () {}),
+                onPressed: () {
+                  cartProvider.reduceQuantity(cart.id);
+                }),
             Text(cart.jumlah.toString(),
                 style: GoogleFonts.poppins()
                     .copyWith(fontSize: 16, fontWeight: FontWeight.bold)),
@@ -86,7 +95,9 @@ class CartCard extends StatelessWidget {
                   Icons.arrow_forward_ios,
                   size: 14,
                 ),
-                onPressed: () {}),
+                onPressed: () {
+                  cartProvider.addQuantity(cart.id);
+                }),
           ]),
         ],
       ),
